@@ -6,17 +6,12 @@ class Solution {
             dup[i]=nums[i];
         }
         Arrays.sort(dup);
-        for(int k:dup){
-        System.out.print(k+"|");}
-        System.out.println();
+       
 
         for(int i=0; i<nums.length; i++)
         {
             rotate(nums,1);
-            for(int k:nums){
-             System.out.print(k+"|");
-             }
-             System.out.println();
+            
             if(Arrays.equals(nums,dup))
             return true;
         }
