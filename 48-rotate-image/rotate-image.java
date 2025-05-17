@@ -1,6 +1,7 @@
 class Solution {
     public void rotate(int[][] matrix) {
         int n= matrix.length;
+  //--------------------------------------------------BRUTE FORCE USING ANOTHER MATRIX DUPLICATE------------------------------      
         // int dupmat[][]=new int [n][n];
         // for(int i=0; i<n; i++)
         // {
