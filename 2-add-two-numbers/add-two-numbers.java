@@ -16,13 +16,13 @@ class Solution {
         ListNode t1=l1;
         ListNode t2=l2;
         int carry=0;
-        
+        int sum=0;
         int data=0;
 
 
         while(t1!=null || t2!=null)
         {
-           int sum=0; 
+            sum=0; 
             sum+=carry;
             if(t1!=null) 
             sum+=t1.val;
