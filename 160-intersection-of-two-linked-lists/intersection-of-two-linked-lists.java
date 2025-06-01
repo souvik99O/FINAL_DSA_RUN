@@ -109,7 +109,7 @@ public class Solution {
         diff--;
     }
 
-    while(f!=null || s!=null )
+    while(f!=null && s!=null )
     {
         if(f==s)
         break;
@@ -118,20 +118,8 @@ public class Solution {
         s=s.next;
     }
 
-    if(f==s)
+    
     return f;
-
-    return null;
-
-
-
-
-
-
-
-
-
-
 
     }
 }
