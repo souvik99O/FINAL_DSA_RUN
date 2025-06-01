@@ -12,16 +12,24 @@
 // APPROACH 1: ITERATIVE (Most common and efficient)
 class Solution {
     public ListNode reverseList(ListNode head) {
-        ListNode prev = null;
-        ListNode curr = head;
-        
-        while (curr != null) {
-            ListNode next = curr.next;  // Store next node
-            curr.next = prev;           // Reverse the link
-            prev = curr;                // Move prev forward
-            curr = next;                // Move curr forward
+        Stack <Integer> st = new Stack();
+
+        ListNode temp=head;
+
+        while(temp!=null)
+        {
+            st.push(temp.val);
+            temp=temp.next;
         }
-        
-        return prev;  // prev is the new head
+
+
+        temp=head;
+        while(temp!=null)
+        {
+            temp.val=st.pop();
+            temp=temp.next;
+        }
+
+        return head;
     }
 }
