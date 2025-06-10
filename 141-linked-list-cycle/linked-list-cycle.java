@@ -35,19 +35,35 @@ public class Solution {
 
 //Little more optimized---------------------------------------------
 
-    if(head==null || head.next==null )
+    // if(head==null || head.next==null )
+    // {
+    //     return false;
+    // }
+
+    // ListNode temp=head;
+    // while(temp!=null)
+    // {
+    //     if(temp.val==-50265)
+    //     return true;
+    //     temp.val=-50265;
+    //     temp=temp.next;
+    // }
+    // return false;
+
+ if(head==null || head.next==null )
     {
         return false;
     }
 
-    ListNode temp=head;
+    ListNode slow=head;
+    ListNode fast=head;
 
-    while(temp!=null)
+    while(fast!=null && fast.next!=null )
     {
-        if(temp.val==-50265)
-        return true;
-        temp.val=-50265;
-        temp=temp.next;
+        slow=slow.next;
+        fast=fast.next.next;
+         if(fast==slow)
+        return true;    
     }
     return false;
 
