@@ -12,36 +12,70 @@ class Solution {
     public ListNode rotateRight(ListNode head, int k) {
 
   //approach 1-brute force------------------------------------------------------      
-        ListNode tail= head;
-        ListNode prev=null;
-        if(head==null|| head.next==null)
-        {
-            return head;
-        }
-        ListNode temp=head;
-        int len=0;
-        while(temp!=null)
-        {
-            temp=temp.next;
-            len++;
-        }
-        if (k==len)
+        // ListNode tail= head;
+        // ListNode prev=null;
+        // if(head==null|| head.next==null)
+        // {
+        //     return head;
+        // }
+        // ListNode temp=head;
+        // int len=0;
+        // while(temp!=null)
+        // {
+        //     temp=temp.next;
+        //     len++;
+        // }
+        // if (k==len)
+        // return head;
+        // if(k>len)
+        // k=(k%len);
+        // int count=k;
+        // while(count!=0)
+        // {
+        //     while(tail.next!=null){
+        //     prev=tail;
+        //     tail=tail.next;
+        //     }
+        //     tail.next=head;
+        //     head=tail;
+        //     prev.next=null;
+        //     count--;
+        // }
+        // return head;
+
+//Modification of my approach above one most optimal   ------------------------------------------------------ 
+
+         if (head == null || head.next == null || k == 0) {
         return head;
-        if(k>len)
-        k=(k%len);
-        int count=k;
-        while(count!=0)
-        {
-            while(tail.next!=null){
-            prev=tail;
-            tail=tail.next;
-            }
-            tail.next=head;
-            head=tail;
-            prev.next=null;
-            count--;
-        }
-        return head;
+    }
+    
+    // Find length and make it circular
+    ListNode tail = head;
+    int len = 1;
+    while (tail.next != null) {
+        tail = tail.next;
+        len++;
+    }
+    tail.next = head; // Make circular
+    
+    // Find the new tail (len - k % len - 1 steps from head)
+    k = k % len;
+    int stepsToNewTail = len - k;
+    ListNode newTail = head;
+    for (int i = 1; i < stepsToNewTail; i++) {
+        newTail = newTail.next;
+    }
+    
+    // Break the circle
+    ListNode newHead = newTail.next;
+    newTail.next = null;
+    
+    return newHead;
+
+
+
+
+//Modification of my approach above one most optimal   ------------------------------------------------------ 
 
 //approach 2-brute force------------------------------------------------------        
 
