@@ -10,33 +10,16 @@
  */
 class Solution {
     public ListNode rotateRight(ListNode head, int k) {
-        // int count=k;
-        // ListNode tail= head;
-        // ListNode prev=null;
-        // if(head==null|| head.next==null)
-        // {
-        //     return head;
-        // }
 
-        // while(count!=0)
-        // {
-        //     while(tail.next!=null){
-        //     prev=tail;
-        //     tail=tail.next;
-        //     }
-        //     tail.next=head;
-        //     head=tail;
-        
-        //     count--;
-        // }
-        // return head;
-
-        int len=0;
+  //approach 1-brute force------------------------------------------------------      
+        ListNode tail= head;
+        ListNode prev=null;
+        if(head==null|| head.next==null)
+        {
+            return head;
+        }
         ListNode temp=head;
-
-        if(head==null ||head.next==null)
-        return head;
-
+        int len=0;
         while(temp!=null)
         {
             temp=temp.next;
@@ -46,58 +29,89 @@ class Solution {
         return head;
         if(k>len)
         k=(k%len);
-        System.out.println(len);
-
-        //revers len-k group
-        temp=head;
-        ListNode prev=null;
-        ListNode front=head;
-        int group1=len-k;
-        ListNode link=head;
-
-        while(group1!=0)
+        int count=k;
+        while(count!=0)
         {
-                front=temp.next;
-                temp.next=prev;
-                prev=temp;
-                temp=front;
-                group1--;
+            while(tail.next!=null){
+            prev=tail;
+            tail=tail.next;
+            }
+            tail.next=head;
+            head=tail;
+            prev.next=null;
+            count--;
         }
-        head=prev;
+        return head;
 
-        //revers next k group
-        prev=null;
-        front=head;
-        int group2=k;
-        ListNode grouptail=temp;
+//approach 2-brute force------------------------------------------------------        
 
-        while(group2!=0)
-        {
-                front=temp.next;
-                temp.next=prev;
-                prev=temp;
-                temp=front;
-                group2--;
-        }
+    //     int len=0;
+    //     ListNode temp=head;
 
-        link.next=prev;
-        link=grouptail;
+    //     if(head==null ||head.next==null)
+    //     return head;
 
-     //revers full list
-     temp=head;
-     prev=null;
-     front=head;
-     while(temp!=null)
-        {
-            front=temp.next;
-            temp.next=prev;
-            prev=temp;
-            temp=front;
-        }
-        head=prev;
+    //     while(temp!=null)
+    //     {
+    //         temp=temp.next;
+    //         len++;
+    //     }
+    //     if (k==len)
+    //     return head;
+    //     if(k>len)
+    //     k=(k%len);
+    //     System.out.println(len);
+
+    //     //revers len-k group
+    //     temp=head;
+    //     ListNode prev=null;
+    //     ListNode front=head;
+    //     int group1=len-k;
+    //     ListNode link=head;
+
+    //     while(group1!=0)
+    //     {
+    //             front=temp.next;
+    //             temp.next=prev;
+    //             prev=temp;
+    //             temp=front;
+    //             group1--;
+    //     }
+    //     head=prev;
+
+    //     //revers next k group
+    //     prev=null;
+    //     front=head;
+    //     int group2=k;
+    //     ListNode grouptail=temp;
+
+    //     while(group2!=0)
+    //     {
+    //             front=temp.next;
+    //             temp.next=prev;
+    //             prev=temp;
+    //             temp=front;
+    //             group2--;
+    //     }
+
+    //     link.next=prev;
+    //     link=grouptail;
+
+    //  //revers full list
+    //  temp=head;
+    //  prev=null;
+    //  front=head;
+    //  while(temp!=null)
+    //     {
+    //         front=temp.next;
+    //         temp.next=prev;
+    //         prev=temp;
+    //         temp=front;
+    //     }
+    //     head=prev;
 
 
-    return head;
+    // return head;
 
 
 
