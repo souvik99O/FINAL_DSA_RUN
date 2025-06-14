@@ -36,7 +36,6 @@ class Solution {
         int j=0;
         while(!st.empty())
         {
-            System.out.println(st.peek());
             list.add(st.peek());
             st.pop();
             j++;
