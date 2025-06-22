@@ -26,11 +26,8 @@ class Solution {
         arr.add(extra);
 
        }
-       String []arr2= new String[arr.size()];
-       for(int i=0; i<arr.size();i++)
-       {
-            arr2[i]=arr.get(i);
-       }
-      return arr2;  
+       
+       
+      return arr.toArray(new String[0]);  
     }
 }
