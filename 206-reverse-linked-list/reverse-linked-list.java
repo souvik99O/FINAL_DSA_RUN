@@ -8,45 +8,20 @@
  *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
  * }
  */
-
-// APPROACH 1: DATA REPLACEMENT (Most common)
-// class Solution {
-//     public ListNode reverseList(ListNode head) {
-//         Stack <Integer> st = new Stack();
-
-//         ListNode temp=head;
-
-//         while(temp!=null)
-//         {
-//             st.push(temp.val);
-//             temp=temp.next;
-//         }
-
-
-//         temp=head;
-//         while(temp!=null)
-//         {
-//             temp.val=st.pop();
-//             temp=temp.next;
-//         }
-
-//         return head;
-//     }
-// }
-// APPROACH 2: ITTERATIVE (Most common and efficient)
 class Solution {
     public ListNode reverseList(ListNode head) {
-        ListNode temp=head;
-        ListNode prev= null;
-        ListNode front;
-        while(temp!=null)
-        {
-            front=temp.next;
-            temp.next=prev;
-            prev=temp;
-            temp=front;
-        }
+        ListNode c= head;
+        ListNode f=null;
+        ListNode b=null;
 
-        return prev;
+        while(c!=null)
+        {
+            f=c.next;
+            c.next=b;
+            b=c;
+            c=f;
+        }
+        return b;
+
     }
 }
