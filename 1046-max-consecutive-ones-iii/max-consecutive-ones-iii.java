@@ -1,46 +1,26 @@
 class Solution {
     public int longestOnes(int[] nums, int k) {
 
-        int len=0; int maxlen=0;
-        int l=0; int r=0;
-        int zeroCount=0;
+     //other way of stating is that the sliding window can have a max of k zeroes
+
+    int l=0; int r=0;
+    int len=0;
+    int zeroes=0;
         while(r<nums.length)
         {
-
-            // if(nums[r]==1)
-            // {
-                
-            //     len=r-l+1;
-            //     if(len>maxlen)
-            //     maxlen=len;
-            //     r++;
-
-            // }
-
-            if(r<nums.length && nums[r]==0)
+            if(nums[r]==0)
             {
-               zeroCount++;
-               while(zeroCount>k)
-               {
-                
-                if(nums[l]==0)
-                zeroCount--;
-
-                l++;
-               }
+                zeroes++;
             }
-
-                len=r-l+1;
-                if(len>maxlen)
-                maxlen=len;
-                r++; 
-            
+            while(zeroes>k)
+            {
+                if(nums[l]==0)
+                zeroes--;
+                l++;
+            }
+            len=Math.max(len,r-l+1);
+            r++;
         }
-
-
-
-
-        return maxlen;
-        
+        return len;
     }
 }
