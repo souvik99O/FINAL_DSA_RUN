@@ -23,22 +23,23 @@ class Solution {
             return maxCount;
         } else {
             while (r < s.length()) {
-                // ✅ Updated character count
                 map.put(str[r], map.getOrDefault(str[r], 0) + 1);
 
-                // ✅ Removed: `if (map.containsKey(str[r])) {` — unnecessary, as `put()` already ensures the key exists
-                // ✅ Just update maxFreq directly
+                // Update maxFreq with current character count
                 maxFreq = Math.max(maxFreq, map.get(str[r]));
 
-                // ❌ Originally recalculated changes multiple times unnecessarily
                 changes = (r - l + 1) - maxFreq;
 
                 while (changes > k) {
-                    // ✅ Removed: updating maxFreq here (was incorrect logic)
                     map.put(str[l], map.getOrDefault(str[l], 0) - 1);
                     l++;
 
-                    // ✅ Recalculate changes after shifting left pointer
+                    // \U0001f501 Recalculate maxFreq in the current window
+                    maxFreq = 0;
+                    for (int val : map.values()) {
+                        maxFreq = Math.max(maxFreq, val);
+                    }
+
                     changes = (r - l + 1) - maxFreq;
                 }
 
