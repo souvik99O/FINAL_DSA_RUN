@@ -1,20 +1,20 @@
 class Solution {
     public int maxScore(int[] nums, int k) {
         
-        int lSum=0;
+        int sum=0;
         
         for(int i=0; i<k;i++)
         {
-            lSum+=nums[i];
+            sum+=nums[i];
         }
-        int mainSum=lSum;
+        int mainSum=sum;
         int l=0;
         int r=k-1;
         while(r!=nums.length-1)
         {
             
 
-            lSum-=nums[r];
+            sum-=nums[r];
             if(r==0)
             r=nums.length-1;
             else
@@ -29,12 +29,12 @@ class Solution {
                 l--;
             }
 
-            lSum+=nums[l];
+            sum+=nums[l];
 
 
-            if(lSum>mainSum)
+            if(sum>mainSum)
             {
-                mainSum=lSum;
+                mainSum=sum;
             }
             
 
