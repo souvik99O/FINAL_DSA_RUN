@@ -1,33 +1,44 @@
 class Solution {
-    public int minFallingPathSum(int[][] matrix) {
-        int m = matrix.length;
-        int n = matrix[0].length; 
-        int dp[][] = new int[m][n];
+    public int minFallingPathSum(int[][] grid) {
+    int m=grid.length;
+    int n=grid[0].length; 
+    int dp[][] = new int[m][n];
 
-        // Initialize first row (instead of filling with -1)
-        for(int j = 0; j < n; j++) {
-            dp[0][j] = matrix[0][j];
-        }
+    
+    
+       
+        for(int i=0; i<n; i++)  
+        dp[m-1][i]=grid[m-1][i];
 
-        // Fill DP table row by row (replace your nested loops)
-        for(int i = 1; i < m; i++) {
-            for(int j = 0; j < n; j++) {
-                int up = dp[i-1][j];
-                int leftD = (j > 0) ? dp[i-1][j-1] : Integer.MAX_VALUE;
-                int rightD = (j < n-1) ? dp[i-1][j+1] : Integer.MAX_VALUE;
-                
-                dp[i][j] = matrix[i][j] + Math.min(up, Math.min(leftD, rightD));
+        
+        for(int i=m-2; i>=0;i--)
+        {
+        int down=Integer.MAX_VALUE;
+        int rightD=Integer.MAX_VALUE;
+        int leftD=Integer.MAX_VALUE;
+        
+            for(int j=0; j<n; j++)
+            {
+                 if(i<m-1)//can move down
+                 down=dp[i+1][j];
+                 if(i<m-1 && j<n-1)//can right diagonal
+                 rightD=dp[i+1][j+1];
+                 if(i <m-1 &&j!=0)//can left diagonal
+                 leftD=dp[i+1][j-1];
+
+                 int min=Math.min(down,rightD);
+                 dp[i][j]=grid[i][j]+Math.min(min,leftD);
+
             }
         }
 
-        // Find minimum in last row (keep your existing logic)
-        int ans = Integer.MAX_VALUE;
-        for(int j = 0; j < n; j++) {
-            ans = Math.min(ans, dp[m-1][j]);
+             // Return minimum from first row
+        int result = Integer.MAX_VALUE;
+        for(int j=0; j<n; j++) {
+            result = Math.min(result, dp[0][j]);
         }
-
-        return ans;
+        return result; 
+ 
     }
-    
-    // Remove the solve method entirely - not needed for tabulation
+
 }
