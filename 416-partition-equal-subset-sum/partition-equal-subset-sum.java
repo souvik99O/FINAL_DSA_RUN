@@ -6,6 +6,7 @@ class Solution {
         for (int i = 0; i < nums.length; i++) {
             totalSum += nums[i];
         }
+        if (totalSum % 2 != 0) return false;
 
         int dp[][] = new int[nums.length + 1][totalSum + 1];
 
