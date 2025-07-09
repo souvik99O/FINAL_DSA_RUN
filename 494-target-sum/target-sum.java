@@ -2,10 +2,11 @@ class Solution {
     public int findTargetSumWays(int[] nums, int target) {
         
         int n=nums.length;
-        int ans= solve(n-1,0,target,nums);
+        HashMap<String,Integer> memo= new HashMap<>();
+        int ans= solve(n-1,0,target,nums,memo);
         return ans;
     }
-    public static int solve(int ind,int sum, int target,int [] nums)
+    public static int solve(int ind,int sum, int target,int [] nums,HashMap<String,Integer> memo)
     {
         if(ind==0)
         {
@@ -19,10 +20,13 @@ class Solution {
          return count;
          
         }
+        String key= ind+","+sum;
+        if(memo.containsKey(key))
+        return memo.get(key);
 
-        int negative=solve(ind-1,sum-nums[ind],target,nums);
-        int positive=solve(ind-1,sum+nums[ind],target,nums);
-
+        int negative=solve(ind-1,sum-nums[ind],target,nums,memo);
+        int positive=solve(ind-1,sum+nums[ind],target,nums,memo);
+        memo.put(key,positive+negative);
         return positive+negative;
 
     }
