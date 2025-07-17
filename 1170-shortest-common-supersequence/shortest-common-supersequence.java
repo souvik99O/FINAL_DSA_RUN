@@ -16,26 +16,24 @@ class Solution {
         StringBuilder sb = new StringBuilder();
         int i = 0, j = 0;
 
-        for (char c : lcs) {
-            // Append all extra characters from str1 before c
-            while (i < n && charArr1[i] != c) {
-                sb.append(charArr1[i]);
-                i++;
+        for(char ch:list.toCharArray())
+        {
+            while(charArr1[i]!=ch)
+            {
+                sb.append(charArr1[i++]);
             }
-            // Append all extra characters from str2 before c
-            while (j < m && charArr2[j] != c) {
-                sb.append(charArr2[j]);
-                j++;
+            while(charArr2[j]!=ch)
+            {
+                sb.append(charArr2[j++]);
             }
-            // Append the LCS character
-            sb.append(c);
+            sb.append(ch);
             i++;
             j++;
         }
-
-        // Append remaining characters
-        while (i < n) sb.append(charArr1[i++]);
-        while (j < m) sb.append(charArr2[j++]);
+        while(i<n)
+        sb.append(charArr1[i++]);
+        while(j<m)
+        sb.append(charArr2[j++]);
 
         return sb.toString();
     }
