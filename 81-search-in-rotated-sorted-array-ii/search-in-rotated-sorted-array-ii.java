@@ -17,8 +17,10 @@ class Solution {
                 return true;
             }
              else if (nums[high] == nums[mid] && nums[mid] == nums[low]) {
+                while (high >= 0 && low < nums.length && nums[high] == nums[low]) {
                     low++;
                     high--;
+                }
 
             }
 
