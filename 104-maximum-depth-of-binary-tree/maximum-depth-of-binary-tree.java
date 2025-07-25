@@ -13,44 +13,35 @@
  *     }
  * }
  */
-
- //USING LEVEL ORDER ------------------------------------------
-// class Solution {
-//     public int maxDepth(TreeNode root) {
-//         Queue<TreeNode> q = new LinkedList<>();
-//         if(root==null)
-//         return 0;
-//         q.offer(root);
-//         int level=0;
-//         while(!q.isEmpty())
-//         {
-//             level++;
-//             int len=q.size();
-//             for(int i=0; i<len ;i++)
-//             {
-//                 TreeNode ele= q.poll();
-//                 if(ele.left!=null)q.offer(ele.left);
-//                 if(ele.right!=null)q.offer(ele.right);
-            
-//             }
-//         }
-
-//         return level;     
-//     }
-// }
-
-//USING Recursion---------------------------
 class Solution {
     public int maxDepth(TreeNode root) {
+         List<List<Integer>> mainList= new ArrayList<>();
+        if(root==null)
+        return mainList.size();
 
-         if(root==null)
+        Queue<TreeNode> q= new LinkedList<>();
+        q.offer(root);
+        while(!q.isEmpty())
         {
-            return 0;
+            List<Integer> list= new ArrayList<>();
+            int size=q.size();
+            for(int i=0; i<size;i++)
+            {
+                TreeNode ele=q.poll();
+                list.add(ele.val);
+                if(ele.left!=null)
+                {
+                    q.offer(ele.left);
+                }
+                if(ele.right!=null)
+                {
+                    q.offer(ele.right);
+                }
+            }
+            mainList.add(list);
         }
 
-        int left=maxDepth(root.left);
-        int right=maxDepth(root.right);
-        return 1+Math.max(left,right);
-
+        return mainList.size();
+        
     }
 }
