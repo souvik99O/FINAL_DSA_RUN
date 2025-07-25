@@ -13,42 +13,43 @@
  *     }
  * }
  */
-// RECURSIVE -----------------------------------------------------
-// class Solution {
-//     List<Integer> list = new ArrayList<>();
-//     public List<Integer> inorderTraversal(TreeNode root) {
-//         if(root==null)
-//         return list;
-
-//         List<Integer> left=inorderTraversal(root.left);
-//         list.add(root.val);
-//         List<Integer> right=inorderTraversal(root.right);
-//         return list;
-//     }
-// }
-
-// ITERATIVE ------------------------------------------------------
+//RECURSIVE -----------------------------------------------------
 class Solution {
-
+    List<Integer> list = new ArrayList<>();
     public List<Integer> inorderTraversal(TreeNode root) {
-        List<Integer> list = new ArrayList<>();
-        Stack<TreeNode> st = new Stack<>();
+     if(root==null)
+     return list;
+     inorderTraversal(root.left);
+     list.add(root.val);
+     inorderTraversal(root.right);
 
-        TreeNode temp = root;
-        while (true) {
-            if (temp != null) {
-                st.push(temp);
-                temp = temp.left;
+     return list;
 
-            } else {
-                if (st.empty())
-                    break;
-                temp = st.pop();
-                list.add(temp.val);
-                temp = temp.right;
-            }
-
-        }
-        return list;
     }
 }
+
+// ITERATIVE ------------------------------------------------------
+// class Solution {
+
+//     public List<Integer> inorderTraversal(TreeNode root) {
+//         List<Integer> list = new ArrayList<>();
+//         Stack<TreeNode> st = new Stack<>();
+
+//         TreeNode temp = root;
+//         while (true) {
+//             if (temp != null) {
+//                 st.push(temp);
+//                 temp = temp.left;
+
+//             } else {
+//                 if (st.empty())
+//                     break;
+//                 temp = st.pop();
+//                 list.add(temp.val);
+//                 temp = temp.right;
+//             }
+
+//         }
+//         return list;
+//     }
+//}
