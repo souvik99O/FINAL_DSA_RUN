@@ -13,35 +13,44 @@
  *     }
  * }
  */
+// class Solution {
+//     public int maxDepth(TreeNode root) {
+//          List<List<Integer>> mainList= new ArrayList<>();
+//         if(root==null)
+//         return mainList.size();
+
+//         Queue<TreeNode> q= new LinkedList<>();
+//         q.offer(root);
+//         while(!q.isEmpty())
+//         {
+//             List<Integer> list= new ArrayList<>();
+//             int size=q.size();
+//             for(int i=0; i<size;i++)
+//             {
+//                 TreeNode ele=q.poll();
+//                 list.add(ele.val);
+//                 if(ele.left!=null)
+//                 {
+//                     q.offer(ele.left);
+//                 }
+//                 if(ele.right!=null)
+//                 {
+//                     q.offer(ele.right);
+//                 }
+//             }
+//             mainList.add(list);
+//         }
+
+//         return mainList.size();
+        
+//     }
+// }
+
 class Solution {
     public int maxDepth(TreeNode root) {
-         List<List<Integer>> mainList= new ArrayList<>();
         if(root==null)
-        return mainList.size();
+        return 0;
 
-        Queue<TreeNode> q= new LinkedList<>();
-        q.offer(root);
-        while(!q.isEmpty())
-        {
-            List<Integer> list= new ArrayList<>();
-            int size=q.size();
-            for(int i=0; i<size;i++)
-            {
-                TreeNode ele=q.poll();
-                list.add(ele.val);
-                if(ele.left!=null)
-                {
-                    q.offer(ele.left);
-                }
-                if(ele.right!=null)
-                {
-                    q.offer(ele.right);
-                }
-            }
-            mainList.add(list);
-        }
-
-        return mainList.size();
-        
+        return 1+Math.max(maxDepth(root.left),maxDepth(root.right));
     }
 }
