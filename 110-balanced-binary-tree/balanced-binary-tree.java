@@ -50,15 +50,15 @@ class Solution {
         if(root==null)
         return 0;
 
-        int left=1+check(root.left);
-        int right=1+check(root.right);
+        int left=check(root.left);
+        int right=check(root.right);
 
-        if(Math.abs((left-1)-(right-1))>1)
+        if(Math.abs((left)-(right))>1)
         return -1; 
 
-        if(left-1==-1||right-1==-1)
+        if(left==-1||right==-1)
         return -1;
         else
-        return Math.max(left,right);
+        return 1+Math.max(left,right);
     }
 }
