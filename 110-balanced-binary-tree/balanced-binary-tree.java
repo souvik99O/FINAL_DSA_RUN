@@ -13,31 +13,52 @@
  *     }
  * }
  */
+// class Solution {
+//     public int maxDepth(TreeNode root) {
+//         if(root==null)
+//         return 0;
+
+//         return 1+Math.max(maxDepth(root.left),maxDepth(root.right));
+//     }
+//     public boolean isBalanced(TreeNode root) {
+//         if(root==null)
+//         return true;
+
+//         int left= maxDepth(root.left);
+//         int right= maxDepth(root.right);
+//         if(Math.abs(left-right)>1)
+//         return false;
+
+//         boolean lefty=isBalanced(root.left);
+//         boolean righty=isBalanced(root.right);
+
+//         if(lefty==false|| righty==false)
+//         return false;
+        
+        
+//         return true;
+
+        
+//     }
 class Solution {
-    public int maxDepth(TreeNode root) {
+    public boolean isBalanced(TreeNode root) {
+    int ans=check(root);
+    return ans==-1?false:true; 
+    }
+    public int check(TreeNode root)
+    {
         if(root==null)
         return 0;
 
-        return 1+Math.max(maxDepth(root.left),maxDepth(root.right));
-    }
-    public boolean isBalanced(TreeNode root) {
-        if(root==null)
-        return true;
+        int left=1+check(root.left);
+        int right=1+check(root.right);
 
-        int left= maxDepth(root.left);
-        int right= maxDepth(root.right);
-        if(Math.abs(left-right)>1)
-        return false;
+        if(Math.abs((left-1)-(right-1))>1)
+        return -1; 
 
-        boolean lefty=isBalanced(root.left);
-        boolean righty=isBalanced(root.right);
-
-        if(lefty==false|| righty==false)
-        return false;
-        
-        
-        return true;
-
-        
+        if(left-1==-1||right-1==-1)
+        return -1;
+        else
+        return Math.max(left,right);
     }
 }
