@@ -10,7 +10,7 @@ class Solution {
             map.put(num, map.getOrDefault(num, 0) + 1);
         }
 
-        for (int j = 0; j < TotalGroups; j++) {
+        while(!map.isEmpty()) {
             int minKey = Integer.MAX_VALUE;
             for (int key : map.keySet()) {
                 if (key < minKey) {
