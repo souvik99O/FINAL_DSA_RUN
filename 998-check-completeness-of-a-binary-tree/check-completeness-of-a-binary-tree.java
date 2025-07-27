@@ -16,7 +16,6 @@
 class Solution {
     public boolean isCompleteTree(TreeNode root) {
        int totalNodes=countTotalNodes(root);
-       System.out.println(totalNodes);
        boolean ans=isCBT(root,1,totalNodes);
        return ans;
     }
@@ -36,12 +35,8 @@ class Solution {
         {
             return false;
         }
-
-
         boolean left=isCBT(root.left,index*2,totalNodes);
         boolean right=isCBT(root.right,index*2+1,totalNodes);
-
-        
         return left && right;
 
     }
