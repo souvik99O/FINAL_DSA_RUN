@@ -24,21 +24,13 @@ class Solution {
     {
         if (root==null)
         return 0;
-
-        int left=1+countTotalNodes(root.left);
-        int right=countTotalNodes(root.right);
-
-
-        return left+right;
+        return 1+countTotalNodes(root.left)+countTotalNodes(root.right);
     }
 
      public boolean isCBT(TreeNode root,int index, int totalNodes)
     {
         if(root==null)
         return true;
-
-        
-        
 
         if(index>totalNodes)
         {
