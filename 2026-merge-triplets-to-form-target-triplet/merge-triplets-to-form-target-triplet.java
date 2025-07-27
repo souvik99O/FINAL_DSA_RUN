@@ -7,9 +7,10 @@ class Solution {
         {
          if (triplets[i][0] > target[0] || triplets[i][1] > target[1] || triplets[i][2] > target[2])
          {
-           triplets[i][0]=0;
-           triplets[i][1]=0;
-           triplets[i][2]=0; 
+        //    triplets[i][0]=0;
+        //    triplets[i][1]=0;
+        //    triplets[i][2]=0; 
+        continue;
          }
         if(target[0]==triplets[i][0])
         found1=true;
