@@ -22,7 +22,7 @@ class Solution {
 
         Collections.sort(list,(a,b)->a.end-b.end);
 
-        int count=1;
+        int keep=1;
         int lastEnd=list.get(0).end;
 
         for(int i=1; i<list.size();i++)
@@ -30,12 +30,12 @@ class Solution {
             if(list.get(i).start>=lastEnd)
             {
                 lastEnd=list.get(i).end;
-                count++;
+                keep++;
             }
         }
 
 
-        return list.size()-count;
+        return list.size()-keep;
 
 
         
