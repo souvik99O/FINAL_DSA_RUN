@@ -4,12 +4,13 @@ class Solution {
         while(n>0)
         {
             int bit=n%2;
-            n=n/2;
+            n=n>>1;
             if(bit==1)
             count++;
         }
-        if(count==1)
+        if(count==1){
         return true;
+        }
         return false;
     }
 }
