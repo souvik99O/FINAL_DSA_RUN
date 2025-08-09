@@ -1,13 +1,15 @@
 class Solution {
     public boolean isPowerOfTwo(int n) {
-        if (n<=0)
-        return false;
-        // boolean ans= (n&n-1)==0?true:false;
-        // return ans;
-
-        if(Integer.bitCount(n)==1)
+        int count=0;
+        while(n>0)
+        {
+            int bit=n%2;
+            n=n/2;
+            if(bit==1)
+            count++;
+        }
+        if(count==1)
         return true;
-        else
         return false;
     }
 }
