@@ -14,50 +14,66 @@
  * }
  */
 class Solution {
+    int i=0;
     public TreeNode buildTree(int[] preorder, int[] inorder) {
-        if (preorder.length == 0 || inorder.length == 0)
-            return null;
-
-        HashMap<Integer, Integer> inorderMap = new HashMap<>();
-
-        for (int i = 0; i < inorder.length; i++) {
-            inorderMap.put(inorder[i], i);
-        }
-
-        TreeNode root = new TreeNode(preorder[0]);
-        int mid = inorderMap.get(root.val);
-
         
+        
+        TreeNode root= buildTreeHelper(preorder,inorder);
+        return root;
+        
+    }
 
-        int leftInorder[] = new int[mid];
-        for (int i = 0; i < mid; i++) {
-            leftInorder[i] = inorder[i];
+
+    public TreeNode buildTreeHelper( int[] preorder, int [] inorder)
+    {
+        if(inorder.length==0 )
+        return null;
+        TreeNode root= new TreeNode(preorder[i]);
+        List<Integer> left =extractLeftPart(root.val,inorder);
+        int leftA[]=new int[left.size()];
+        for(int i=0; i<leftA.length; i++)
+        {
+            leftA[i]=left.get(i);
         }
-        int leftPreorder[] = new int[mid];
-        for (int i = 0; i < mid; i++) {
-            leftPreorder[i] = preorder[i + 1];
+        List<Integer> right=extractRightPart(root.val,inorder); 
+        int rightA[]=new int[right.size()];
+        for(int i=0; i<rightA.length; i++)
+        {
+            rightA[i]=right.get(i);
         }
 
-        int rightInorder[] = new int[inorder.length - mid - 1];
-        int j = 0;
-        for (int i = mid + 1; i < inorder.length; i++) {
-            rightInorder[j] = inorder[i];
-            j++;
-        }
-        int rightPreorder[] = new int[inorder.length - mid - 1];
-        int k = 0;
-        for (int i = mid + 1; i < preorder.length; i++) {
-            rightPreorder[k] = preorder[i];
-            k++;
-        }
-
-        TreeNode left = buildTree(leftPreorder, leftInorder);
-        TreeNode right = buildTree(rightPreorder, rightInorder);
-
-        root.left = left;
-        root.right = right;
+       
+        i++;
+        root.left=buildTreeHelper(preorder,leftA);
+        root.right=buildTreeHelper(preorder,rightA);
 
         return root;
-
     }
+public List<Integer> extractLeftPart(int num,int [] inorder){
+    int rootIndex=ls(num,inorder);
+    List<Integer> left= new ArrayList<>();
+    for(int i=0; i<rootIndex; i++)
+    {
+        left.add(inorder[i]);
+    }
+    return left;
+}
+public List<Integer> extractRightPart(int num,int [] inorder){
+    int rootIndex=ls(num,inorder);
+    List<Integer> right= new ArrayList<>();
+    for(int i=rootIndex+1; i<inorder.length; i++)
+    {
+        right.add(inorder[i]);
+    }
+    return right;
+}
+
+    public static int ls(int num, int[] inorder) {
+        for (int i = 0; i < inorder.length; i++) {
+            if (inorder[i] == num) {
+                return i;  // found
+            }
+        }
+        return -1; // not foun
+}
 }
