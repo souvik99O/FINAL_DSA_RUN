@@ -42,31 +42,4 @@ class Solution {
 
         return root;
     }
-public List<Integer> extractLeftPart(int num,int [] inorder){
-    int rootIndex=ls(num,inorder);
-    List<Integer> left= new ArrayList<>();
-    for(int i=0; i<rootIndex; i++)
-    {
-        left.add(inorder[i]);
-    }
-    return left;
-}
-public List<Integer> extractRightPart(int num,int [] inorder){
-    int rootIndex=ls(num,inorder);
-    List<Integer> right= new ArrayList<>();
-    for(int i=rootIndex+1; i<inorder.length; i++)
-    {
-        right.add(inorder[i]);
-    }
-    return right;
-}
-
-    public static int ls(int num, int[] inorder) {
-        for (int i = 0; i < inorder.length; i++) {
-            if (inorder[i] == num) {
-                return i;  // found
-            }
-        }
-        return -1; // not foun
-}
 }
