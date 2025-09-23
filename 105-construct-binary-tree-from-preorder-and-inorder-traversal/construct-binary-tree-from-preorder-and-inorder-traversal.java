@@ -15,37 +15,30 @@
  */
 class Solution {
     int i=0;
+    Map<Integer, Integer> map = new HashMap<>();
+
     public TreeNode buildTree(int[] preorder, int[] inorder) {
+
+         for (int i = 0; i < inorder.length; i++) {
+            map.put(inorder[i], i);
+        }
         
-        
-        TreeNode root= buildTreeHelper(preorder,inorder);
+        TreeNode root= buildTreeHelper(preorder,0,inorder.length-1);
         return root;
         
     }
 
 
-    public TreeNode buildTreeHelper( int[] preorder, int [] inorder)
+    public TreeNode buildTreeHelper( int[] preorder, int start, int end)
     {
-        if(inorder.length==0 )
+        if(start>end)
         return null;
+        
         TreeNode root= new TreeNode(preorder[i]);
-        List<Integer> left =extractLeftPart(root.val,inorder);
-        int leftA[]=new int[left.size()];
-        for(int i=0; i<leftA.length; i++)
-        {
-            leftA[i]=left.get(i);
-        }
-        List<Integer> right=extractRightPart(root.val,inorder); 
-        int rightA[]=new int[right.size()];
-        for(int i=0; i<rightA.length; i++)
-        {
-            rightA[i]=right.get(i);
-        }
-
-       
+        int rootIndex=map.get(root.val);
         i++;
-        root.left=buildTreeHelper(preorder,leftA);
-        root.right=buildTreeHelper(preorder,rightA);
+        root.left=buildTreeHelper(preorder,start,rootIndex-1);
+        root.right=buildTreeHelper(preorder,rootIndex+1,end);
 
         return root;
     }
